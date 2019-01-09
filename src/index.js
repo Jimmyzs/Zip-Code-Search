@@ -30,13 +30,12 @@ class App extends React.Component {
                         axios.get(api2)
                             .then( (response) => {
                                 let statename = response.data[0].State;
+                                let tmp = this.state.states;
                                 if (statename in this.state.states) {
-                                    let tmp = {}
                                     tmp[statename] = this.state.states[statename];
                                     tmp[statename].push(zip);
                                     this.setState({states: tmp});
                                 } else {
-                                    let tmp = {};
                                     tmp[statename] = [zip];
                                     this.setState({states: tmp});
                                 }
@@ -56,7 +55,7 @@ class App extends React.Component {
                 {
                     statenames.map( (statename) =>
                         (<Card statename={statename} zips={this.state.states[statename]}/>)
-                        )
+                    )
                 }
             </div>
         );
